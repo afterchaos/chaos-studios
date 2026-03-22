@@ -830,6 +830,124 @@ body:has(a:hover, button:hover, .p-item:hover) #cur-r {
   color: var(--cream);
 }
 
+/* PRICING */
+.pricing { background: var(--ink); border-top: 1px solid var(--line); position: relative; }
+.plans-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 80px; }
+
+.plan-card {
+  padding: 60px 40px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 4px;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.plan-card:hover { transform: translateY(-12px); background: rgba(255, 255, 255, 0.05); border-color: var(--accent); }
+
+.plan-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, rgba(255,255,255,0.05) 0%, transparent 70%);
+  opacity: 0;
+  transition: var(--transition);
+}
+.plan-card:hover::after { opacity: 1; }
+
+.plan-n { 
+  font-family: var(--ff-d); 
+  font-size: 140px; 
+  line-height: 1; 
+  color: rgba(255, 255, 255, 0.02); 
+  position: absolute; 
+  bottom: -20px; 
+  right: -10px; 
+  letter-spacing: -0.05em; 
+  z-index: 0;
+  transition: var(--transition);
+}
+.plan-card:hover .plan-n { color: rgba(255, 255, 255, 0.05); transform: scale(1.1); }
+
+.plan-card > * { position: relative; z-index: 2; }
+
+.p-starter { --accent: #2ecc71; }
+.p-pro { --accent: #3498db; }
+.p-premium { --accent: var(--blood); }
+.p-long { --accent: var(--gold); }
+
+.plan-ico {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  margin-bottom: 32px;
+  border: 1px solid var(--glass-border);
+  transition: var(--transition);
+}
+.plan-card:hover .plan-ico { background: var(--accent); transform: rotate(8deg); border-color: transparent; }
+.plan-ico svg { width: 24px; height: 24px; stroke: var(--accent); fill: none; stroke-width: 2; transition: var(--transition); }
+.plan-card:hover .plan-ico svg { stroke: var(--ink); }
+
+.plan-badge {
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.plan-title { font-family: var(--ff-s); font-size: 34px; color: var(--cream); margin-bottom: 12px; font-weight: 400; }
+.plan-sub { font-size: 14px; color: var(--smoke); margin-bottom: 32px; line-height: 1.6; font-weight: 300; }
+
+.plan-price { font-family: var(--ff-d); font-size: 52px; color: var(--cream); margin-bottom: 40px; display: flex; align-items: baseline; gap: 8px; line-height: 1; }
+.plan-price span { font-size: 13px; font-family: var(--ff-b); color: var(--smoke); letter-spacing: 0.1em; text-transform: uppercase; }
+
+.plan-features { list-style: none; margin-bottom: 48px; flex-grow: 1; border-top: 1px solid var(--glass-border); padding-top: 32px; }
+.plan-features li {
+  font-size: 14px;
+  color: var(--smoke);
+  margin-bottom: 18px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  line-height: 1.4;
+}
+
+.plan-features li::before {
+  content: '✓';
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.plan-btn {
+  width: 100%;
+  padding: 18px;
+  background: transparent;
+  border: 1px solid var(--glass-border);
+  color: var(--cream);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-radius: 4px;
+  transition: var(--transition);
+  text-align: center;
+  text-decoration: none;
+  backdrop-filter: blur(5px);
+}
+
+.plan-card:hover .plan-btn { background: var(--accent); color: var(--ink); border-color: var(--accent); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+
 /* DIVISOR */
 .contact-divider {
   display: flex;
@@ -1076,10 +1194,12 @@ body:has(a:hover, button:hover, .p-item:hover) #cur-r {
   .nav { padding: 24px 30px; }
   .sec { padding: 100px 30px; }
   .cta-band { margin: 40px 30px; flex-direction: column; text-align: center; padding: 80px 30px; }
-  .svc-grid, .testi-grid, .proc-row { grid-template-columns: 1fr; }
+  .svc-grid, .testi-grid, .proc-row, .plans-grid { grid-template-columns: 1fr; }
+  .plans-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 768px) {
+  .plans-grid { grid-template-columns: 1fr; }
   .nav-links, .nav-btn { display: none; }
   .mob-btn { display: flex; }
   .p-item { grid-column: span 12 !important; aspect-ratio: 16/10 !important; }
@@ -1099,6 +1219,7 @@ body:has(a:hover, button:hover, .p-item:hover) #cur-r {
     <li><a href="#sobre">Sobre</a></li>
     <li><a href="#portfolio">Portfólio</a></li>
     <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#planos">Planos</a></li>
     <li><a href="#depoimentos">Depoimentos</a></li>
     <li><a href="#contato">Contato</a></li>
   </ul>
@@ -1112,6 +1233,7 @@ body:has(a:hover, button:hover, .p-item:hover) #cur-r {
   <a href="#sobre" onclick="closeMob()">SOBRE</a>
   <a href="#portfolio" onclick="closeMob()">PORTFÓLIO</a>
   <a href="#servicos" onclick="closeMob()">SERVIÇOS</a>
+  <a href="#planos" onclick="closeMob()">PLANOS</a>
   <a href="#depoimentos" onclick="closeMob()">DEPOIMENTOS</a>
   <a href="#contato" onclick="closeMob()">CONTATO</a>
 </div>
@@ -1291,6 +1413,90 @@ body:has(a:hover, button:hover, .p-item:hover) #cur-r {
       <div class="svc-title">Imersivo & Cinematográfico</div>
       <div class="svc-sub">Narrativas Visuais</div>
       <div class="svc-desc">Gradação de cor artística e design sonoro atmosférico para criar uma experiência que vai além do conteúdo — vira um evento.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="sec pricing" id="planos">
+  <div class="sec-tag">Orçamentos</div>
+  <h2 class="sec-h rev">🎬 Planos de <em>Edição</em></h2>
+  
+  <div class="plans-grid rev">
+    <!-- STARTER -->
+    <div class="plan-card p-starter">
+      <div class="plan-n">01</div>
+      <div class="plan-ico"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+      <div class="plan-badge">Starter</div>
+      <h3 class="plan-title">Essencial</h3>
+      <p class="plan-sub">Perfeito para quem está começando sua presença online com vídeos rápidos.</p>
+      <div class="plan-price">R$ 35 <span>/ vídeo</span></div>
+      <ul class="plan-features">
+        <li>Até 60 segundos</li>
+        <li>Corte preciso e ritmo fluido</li>
+        <li>Trilha sonora + sincronização</li>
+        <li>Legendas básicas (clean)</li>
+        <li>1 rodada de ajustes</li>
+      </ul>
+      <a href="#contato" class="plan-btn">Selecionar Starter</a>
+    </div>
+
+    <!-- PRO -->
+    <div class="plan-card p-pro">
+      <div class="plan-n">02</div>
+      <div class="plan-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div>
+      <div class="plan-badge">Pro</div>
+      <h3 class="plan-title">Otimizado</h3>
+      <p class="plan-sub">Foco total em retenção e engajamento dinâmico para redes sociais.</p>
+      <div class="plan-price">R$ 90 <span>/ vídeo</span></div>
+      <ul class="plan-features">
+        <li>Até 3 minutos</li>
+        <li>Edição dinâmica (cortes + zooms)</li>
+        <li>Legendas estilizadas (Reels/TikTok)</li>
+        <li>Sound effects + impacto</li>
+        <li>Correção de cor</li>
+        <li>2 rodadas de ajustes</li>
+      </ul>
+      <a href="#contato" class="plan-btn">Selecionar Pro</a>
+    </div>
+
+    <!-- PREMIUM -->
+    <div class="plan-card p-premium">
+      <div class="plan-n">03</div>
+      <div class="plan-ico"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+      <div class="plan-badge">Premium</div>
+      <h3 class="plan-title">Alto Nível</h3>
+      <p class="plan-sub">Para criadores que buscam crescimento real, escala e storytelling.</p>
+      <div class="plan-price">R$ 220 <span>/ vídeo</span></div>
+      <ul class="plan-features">
+        <li>Até 10 minutos</li>
+        <li>Storytelling e ritmo avançado</li>
+        <li>Motion design leve</li>
+        <li>Legendas dinâmicas</li>
+        <li>Design sonoro completo</li>
+        <li>Color grading profissional</li>
+        <li>3 rodadas de ajustes</li>
+      </ul>
+      <a href="#contato" class="plan-btn">Selecionar Premium</a>
+    </div>
+
+    <!-- LONG FORM -->
+    <div class="plan-card p-long">
+      <div class="plan-n">04</div>
+      <div class="plan-ico"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg></div>
+      <div class="plan-badge">Long Form</div>
+      <h3 class="plan-title">Sob Medida</h3>
+      <p class="plan-sub">Projetos complexos, documentários ou produções cinematográficas.</p>
+      <div class="plan-price">Budget <span>Sob consulta</span></div>
+      <ul class="plan-features">
+        <li>Acima de 10 minutos</li>
+        <li>Estrutura narrativa completa</li>
+        <li>Foco em watch time e retenção</li>
+        <li>Motion e visual refinado</li>
+        <li>Fluxo de revisão personalizado</li>
+        <li>Escolha total do cliente</li>
+      </ul>
+      <a href="#contato" class="plan-btn">Solicitar Orçamento</a>
     </div>
   </div>
 </section>
