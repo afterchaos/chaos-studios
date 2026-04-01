@@ -953,3 +953,48 @@ body:has(a:hover, button:hover, .p-item:hover) #cur-r {
   .a-stat { padding:16px 8px; }
   .a-stat-n { font-size:28px; }
 }
+
+/* ── LANGUAGE SWITCHER ─────────────────────────────────────── */
+.lang-switcher {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 20px;
+}
+.lang-btn {
+  background: none;
+  border: none;
+  font-family: var(--ff-b);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--smoke);
+  cursor: pointer;
+  padding: 4px 8px;
+  transition: var(--transition);
+  border-radius: 4px;
+}
+.lang-btn:hover {
+  color: var(--cream);
+}
+.lang-btn.active {
+  color: var(--gold);
+  background: rgba(212, 175, 55, 0.1);
+}
+.lang-sep {
+  color: var(--line);
+  font-size: 10px;
+  user-select: none;
+}
+.mob-lang {
+  margin: 0 0 20px 0;
+  justify-content: center;
+}
+.mob-lang .lang-btn {
+  font-size: 16px;
+  padding: 8px 16px;
+}
+
+@media (max-width: 1024px) {
+  .nav .lang-switcher { display: none; }
+}
